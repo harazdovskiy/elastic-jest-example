@@ -1,0 +1,36 @@
+{
+  "name": "elastic-jest-example",
+  "version": "1.0.0",
+  "description": "Example of mocking elasticsearch with jest plugin",
+  "main": "index.js",
+  "scripts": {
+    "serve": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harazdovskiy/elastic-jest-example.git"
+  },
+  "keywords": [
+    "jest",
+    "elasticsearch",
+    "mock",
+    "test"
+  ],
+  "author": "Dmytro Harazdovskiy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harazdovskiy/elastic-jest-example/issues"
+  },
+  "homepage": "https://github.com/harazdovskiy/elastic-jest-example#readme",
+  "dependencies": {
+    "@elastic/elasticsearch": "8.5.0",
+    "@hapi/hapi": "21.0.0",
+    "dotenv": "^16.0.3",
+    "express": "4.18.2",
+    "qs": "6.11.0",
+    "ulid": "2.3.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
