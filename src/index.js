@@ -1,9 +1,9 @@
 import Hapi from '@hapi/hapi'
 import Qs from 'qs';
 import {createHandler} from "./create/index.js";
-import {readHandler} from "./read/index.js";
+import {readAllHandler, readHandler} from "./read/index.js";
 import {updateHandler} from "./update/index.js";
-import {deleteHandler} from "./delete/index.js";
+import {deleteAllHandler, deleteHandler} from "./delete/index.js";
 
 const init = async () => {
 
@@ -28,6 +28,12 @@ const init = async () => {
   });
 
   server.route({
+    method: 'GET',
+    path: '/',
+    handler: readAllHandler
+  });
+
+  server.route({
     method: 'PATCH',
     path: '/{id}',
     handler: updateHandler
@@ -39,7 +45,20 @@ const init = async () => {
     handler: deleteHandler
   });
 
+  server.route({
+    method: 'DELETE',
+    path: '/',
+    handler: deleteAllHandler
+  });
+
   await server.start();
+
+  server.events.on('log', (event, tags) => {
+    console.log({event}, {tags})
+    if (tags.error) {
+      console.log(`Server error: ${event.error ? event.error.message : 'unknown'}`);
+    }
+  });
   console.log('Server running on %s', server.info.uri);
 };
 

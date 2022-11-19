@@ -27,8 +27,10 @@
   "dependencies": {
     "@elastic/elasticsearch": "8.5.0",
     "@hapi/hapi": "21.0.0",
+    "dotenv": "^16.0.3",
     "express": "4.18.2",
-    "qs": "6.11.0"
+    "qs": "6.11.0",
+    "ulid": "2.3.0"
   },
   "engines": {
     "node": ">=18"
