@@ -1,9 +1,9 @@
-import Hapi from '@hapi/hapi'
-import Qs from 'qs';
-import {createHandler} from "./create/index.js";
-import {readAllHandler, readHandler} from "./read/index.js";
-import {updateHandler} from "./update/index.js";
-import {deleteAllHandler, deleteHandler} from "./delete/index.js";
+const Hapi = require('@hapi/hapi');
+const Qs = require('qs');
+const {createHandler} = require("./create/index.js");
+const {readAllHandler, readHandler} = require("./read/index.js");
+const {updateHandler} = require("./update/index.js");
+const {deleteAllHandler, deleteHandler} = require("./delete/index.js");
 
 const init = async () => {
 

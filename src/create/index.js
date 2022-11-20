@@ -1,10 +1,10 @@
-import {ulid} from 'ulid';
-import {client, index} from "../elastic.js";
+const {ulid} = require('ulid');
+const {client, index} = require("../elastic.js");
 
-export const createHandler = async (request, h) => {
+module.exports.createHandler = async (request, h) => {
   if (Object.keys(request.payload))
     try {
-      const res = await create(request.payload)
+      const res = await this.create(request.payload)
       return h.response(res).code(200);
     } catch (e) {
       console.log({e})
@@ -12,8 +12,7 @@ export const createHandler = async (request, h) => {
     }
 }
 
-export async function create(entity) {
-
+module.exports.create = async (entity) => {
   const {
     type,
     value,
@@ -22,8 +21,8 @@ export async function create(entity) {
 
   const document = {
     id: ulid(),
-    type: type.toLowerCase(),
-    value: Number(value),
+    type: type.trim().toLowerCase(),
+    value: +value.toFixed(0),
     name: name.trim()
   }
 

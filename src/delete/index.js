@@ -1,8 +1,8 @@
-import {client, index} from "../elastic.js";
+const {client, index} = require("../elastic.js");
 
-export const deleteHandler = async (request, h) => {
+module.exports.deleteHandler = async (request, h) => {
   try {
-    const res = await deleteById(request.params.id)
+    const res = await this.deleteById(request.params.id)
     return h.response(res).code(200);
   } catch (e) {
     console.log(e)
@@ -10,9 +10,9 @@ export const deleteHandler = async (request, h) => {
   }
 }
 
-export const deleteAllHandler = async (request, h) => {
+module.exports.deleteAllHandler = async (request, h) => {
   try {
-    const res = await deleteAll()
+    const res = await this.deleteAll()
     return h.response(res).code(200);
   } catch (e) {
     console.log(e)
@@ -20,7 +20,7 @@ export const deleteAllHandler = async (request, h) => {
   }
 }
 
-export const deleteAll = async () => {
+module.exports.deleteAll = async () => {
   return client.deleteByQuery({
     index,
     query: {
@@ -29,7 +29,7 @@ export const deleteAll = async () => {
   })
 }
 
-export const deleteById = async (id) => {
+module.exports.deleteById = async (id) => {
   return client.deleteByQuery({
     index,
     query: {

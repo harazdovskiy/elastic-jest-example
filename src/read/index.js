@@ -1,8 +1,8 @@
-import {client, index} from "../elastic.js";
+const {client, index} = require("../elastic.js");
 
-export const readHandler = async (request, h) => {
+module.exports.readHandler = async (request, h) => {
   try {
-    const res = await read(request.params.id)
+    const res = await this.read(request.params.id)
     return h.response(res).code(200);
   } catch (e) {
     console.log(e)
@@ -10,9 +10,9 @@ export const readHandler = async (request, h) => {
   }
 }
 
-export const readAllHandler = async (request, h) => {
+module.exports.readAllHandler = async (request, h) => {
   try {
-    const res = await readAll()
+    const res = await this.readAll()
     return h.response(res).code(200);
   } catch (e) {
     console.log(e)
@@ -20,14 +20,14 @@ export const readAllHandler = async (request, h) => {
   }
 }
 
-export const readAll = async () => {
+module.exports.readAll = async () => {
   const result = await client.search({
     index,
   })
   return result.hits.hits.map(({_source}) => (_source))
 }
 
-export async function read(entityId) {
+module.exports.read = async (entityId) => {
   const result = await client.search({
     index,
     query: {

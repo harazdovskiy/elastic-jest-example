@@ -1,8 +1,8 @@
-import {client, index} from "../elastic.js";
+const {client, index} = require("../elastic.js");
 
-export const updateHandler = async (request, h) => {
+module.exports.updateHandler = async (request, h) => {
   try {
-    const res = await updateById(request.params.id, request.payload)
+    const res = await this.updateById(request.params.id, request.payload)
     return h.response(res).code(200);
   } catch (e) {
     console.log(e)
@@ -10,7 +10,7 @@ export const updateHandler = async (request, h) => {
   }
 }
 
-export async function updateById(id, fields) {
+module.exports.updateById = (id, fields) => {
   let inline = ''
   if (fields.type) {
     inline += `ctx._source.type='${fields.type}';`;
