@@ -1,4 +1,4 @@
-`const {index} = require('./src/elastic.js');
+const {index} = require('./src/elastic.js');
 module.exports = () => {
   return {
     esVersion: '8.4.0',

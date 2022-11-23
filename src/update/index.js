@@ -13,15 +13,15 @@ module.exports.updateHandler = async (request, h) => {
 module.exports.updateById = (id, fields) => {
   let inline = ''
   if (fields.type) {
-    inline += `ctx._source.type='${fields.type}';`;
+    inline += `ctx._source.type='${fields.type.trim().toLowerCase()}';`;
   }
 
   if (fields.name) {
-    inline += `ctx._source.name='${fields.name}';`;
+    inline += `ctx._source.name='${fields.name.trim()}';`;
   }
 
   if (fields.value) {
-    inline += `ctx._source.value=${fields.value};`;
+    inline += `ctx._source.value=${+fields.value.toFixed(0)};`;
   }
 
   return client.updateByQuery({

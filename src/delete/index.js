@@ -21,16 +21,17 @@ module.exports.deleteAllHandler = async (request, h) => {
 }
 
 module.exports.deleteAll = async () => {
-  return client.deleteByQuery({
+  await client.deleteByQuery({
     index,
     query: {
       match_all: {}
     }
   })
+  return {deleted: true}
 }
 
 module.exports.deleteById = async (id) => {
-  return client.deleteByQuery({
+  await client.deleteByQuery({
     index,
     query: {
       match: {
@@ -38,4 +39,6 @@ module.exports.deleteById = async (id) => {
       }
     }
   })
+
+  return {deleted: true}
 }

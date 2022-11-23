@@ -22,15 +22,16 @@ module.exports.readAllHandler = async (request, h) => {
 
 module.exports.readAll = async () => {
   const result = await client.search({
-    index,
+    index, sort: [{
+      name: {order: 'asc'}
+    }]
   })
   return result.hits.hits.map(({_source}) => (_source))
 }
 
 module.exports.read = async (entityId) => {
   const result = await client.search({
-    index,
-    query: {
+    index, query: {
       match: {id: entityId}
     }
   })
