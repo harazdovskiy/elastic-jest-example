@@ -3,6 +3,15 @@ const {client, index} = require("../elastic");
 const {ulid} = require("ulid");
 
 describe('#deleteAll', () => {
+  beforeEach(async () => {
+    await client.deleteByQuery({
+      index,
+      query: {
+        match_all: {}
+      }
+    })
+    await client.indices.refresh({index})
+  })
   it('should delete all records', async () => {
     await client.index({
       index,

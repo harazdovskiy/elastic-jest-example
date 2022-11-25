@@ -2,6 +2,15 @@ const {create} = require("./index.js");
 const {client, index} = require("../elastic");
 
 describe('#create', () => {
+  beforeEach(async () => {
+    await client.deleteByQuery({
+      index,
+      query: {
+        match_all: {}
+      }
+    })
+    await client.indices.refresh({index})
+  })
   it('should insert data', async () => {
     expect.assertions(3);
     const res = await create({type: 'some', value: 100, name: 'jacket'})
