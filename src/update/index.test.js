@@ -12,12 +12,11 @@ describe('#updateById', () => {
     await client.indices.refresh({index})
   })
   it('should return objects with updated `value` field', async () => {
-    await Promise.all([
-      client.index({
-        index,
-        document: {type: 'some', value: 222, name: 'jacket', id: 'some-id'}
-      })
-    ])
+
+    await client.index({
+      index,
+      document: {type: 'some', value: 222, name: 'jacket', id: 'some-id'}
+    })
     await client.indices.refresh({index})
 
     await updateById('some-id', {value: 3.44865});
@@ -39,12 +38,10 @@ describe('#updateById', () => {
   })
 
   it('should return objects with proper updated `type` field', async () => {
-    await Promise.all([
-      client.index({
-        index,
-        document: {type: 'some', value: 222, name: 'jacket', id: 'some-id'}
-      })
-    ])
+    await client.index({
+      index,
+      document: {type: 'some', value: 222, name: 'jacket', id: 'some-id'}
+    })
     await client.indices.refresh({index})
 
     await updateById('some-id', {type: ' SomE333 '});
@@ -66,12 +63,10 @@ describe('#updateById', () => {
   })
 
   it('should return objects with proper updated `name` field', async () => {
-    await Promise.all([
-      client.index({
-        index,
-        document: {type: 'some', value: 222, name: 'jacket', id: 'some-id'}
-      })
-    ])
+    await client.index({
+      index,
+      document: {type: 'some', value: 222, name: 'jacket', id: 'some-id'}
+    })
     await client.indices.refresh({index})
 
     await updateById('some-id', {name: ' SomE333 '});
